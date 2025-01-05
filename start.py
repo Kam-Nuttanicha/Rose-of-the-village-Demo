@@ -1,5 +1,6 @@
 import pygame
 import sys
+import world_view  # นำเข้าไฟล์ world_view.py (เปลี่ยนชื่อจากโค้ดที่คุณให้)
 
 # Initialize Pygame
 pygame.init()
@@ -33,7 +34,7 @@ def draw_button():
     else:
         pygame.draw.rect(screen, BLUE, (button_x, button_y, button_width, button_height))
     
-    text_surface = button_font.render("Start Game", True, WHITE)
+    text_surface = button_font.render("VISIT", True, WHITE)
     text_rect = text_surface.get_rect(center=(button_x + button_width // 2, button_y + button_height // 2))
     screen.blit(text_surface, text_rect)
 
@@ -47,13 +48,15 @@ while running:
             mouse_pos = pygame.mouse.get_pos()
             if button_x <= mouse_pos[0] <= button_x + button_width and button_y <= mouse_pos[1] <= button_y + button_height:
                 print("Game Started!")
-                # Replace this with your game logic or call the main game function
+                pygame.quit()  # ปิดหน้าจอเริ่มต้น
+                world_view.run_world_view()  # เรียกฟังก์ชันหลักใน world_view.py
+                sys.exit()  # ออกจากโปรแกรม
 
     # Clear screen
     screen.fill(WHITE)
 
     # Draw title
-    title_text = font.render("Welcome to the Game!", True, BLACK)
+    title_text = font.render("Welcome to Rose's Village", True, BLACK)
     title_rect = title_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3))
     screen.blit(title_text, title_rect)
 
