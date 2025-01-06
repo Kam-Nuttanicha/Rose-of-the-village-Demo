@@ -1,15 +1,13 @@
 import pygame
 import sys
-import inhouse  # นำเข้า inhouse.py เพื่อเปลี่ยนหน้าต่าง
+import thefront  # เพิ่มการ import thefront.py
 
-def run_rose_room():
+def run_church():
     WINDOW_WIDTH, WINDOW_HEIGHT = 800, 400
     BOX_WIDTH, BOX_HEIGHT = 90, 150
     BOX_COLOR = (255, 255, 0)  # สีเหลือง
     GREEN_BOX_COLOR = (0, 255, 0)  # สีเขียว
     GREEN_BOX_WIDTH, GREEN_BOX_HEIGHT = 150, 280
-    BLACK_BOX_COLOR = (0, 0, 0)  # สีดำ
-    BLACK_BOX_WIDTH, BLACK_BOX_HEIGHT = 250, 80
     BACKGROUND_COLOR = (0, 0, 255)
     MOVE_SPEED = 5
 
@@ -18,9 +16,6 @@ def run_rose_room():
 
     green_box_x = 30
     green_box_y = WINDOW_HEIGHT - GREEN_BOX_HEIGHT - 20
-
-    black_box_x = WINDOW_WIDTH - BLACK_BOX_WIDTH
-    black_box_y = WINDOW_HEIGHT - BLACK_BOX_HEIGHT
 
     pygame.init()
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -41,7 +36,7 @@ def run_rose_room():
                     button_x = (WINDOW_WIDTH - 200) // 2
                     button_y = (WINDOW_HEIGHT - 70) * 0.8
                     if button_x <= mouse_pos[0] <= button_x + 200 and button_y <= mouse_pos[1] <= button_y + 70:
-                        inhouse.run_inhouse()
+                        thefront.run_thefront()  # เรียกใช้ฟังก์ชันจาก thefront.py
                         running = False
 
         keys = pygame.key.get_pressed()
@@ -55,23 +50,15 @@ def run_rose_room():
         screen.fill(BACKGROUND_COLOR)
 
         pygame.draw.rect(screen, GREEN_BOX_COLOR, (green_box_x, green_box_y, GREEN_BOX_WIDTH, GREEN_BOX_HEIGHT))
-        pygame.draw.rect(screen, BLACK_BOX_COLOR, (black_box_x, black_box_y, BLACK_BOX_WIDTH, BLACK_BOX_HEIGHT))
         pygame.draw.rect(screen, BOX_COLOR, (box_x, box_y, BOX_WIDTH, BOX_HEIGHT))
 
         moving_box = pygame.Rect(box_x, box_y, BOX_WIDTH, BOX_HEIGHT)
         green_box = pygame.Rect(green_box_x, green_box_y, GREEN_BOX_WIDTH, GREEN_BOX_HEIGHT)
-        black_box = pygame.Rect(black_box_x, black_box_y, BLACK_BOX_WIDTH, BLACK_BOX_HEIGHT)
 
         if moving_box.colliderect(green_box):
             show_message = True
         else:
             show_message = False
-
-        if moving_box.colliderect(black_box):
-            if keys[pygame.K_LEFT]:
-                box_x += MOVE_SPEED
-            if keys[pygame.K_RIGHT]:
-                box_x -= MOVE_SPEED
 
         if show_message:
             font = pygame.font.Font(None, 36)
@@ -93,4 +80,4 @@ def run_rose_room():
     sys.exit()
 
 if __name__ == "__main__":
-    run_rose_room()
+    run_church()

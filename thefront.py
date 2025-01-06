@@ -1,7 +1,7 @@
 import pygame
 import sys
 
-def run_world_view():
+def run_thefront():
     # กำหนดค่าต่าง ๆ
     WORLD_WIDTH, WORLD_HEIGHT = 800, 800  # ขนาดของโลก
     VIEWPORT_WIDTH, VIEWPORT_HEIGHT = 800, 600  # ขนาดของมุมมอง
@@ -44,14 +44,14 @@ def run_world_view():
     inner_box_x = STATIC_BOX_POSITION[0] + (STATIC_BOX_POSITION[2] // 2) - (INNER_BOX_WIDTH // 2)
     inner_box_y = STATIC_BOX_POSITION[1] + STATIC_BOX_POSITION[3] - INNER_BOX_HEIGHT
     inner_box = pygame.Rect(inner_box_x, inner_box_y, INNER_BOX_WIDTH, INNER_BOX_HEIGHT)
-
+    
     # คำนวณตำแหน่งเริ่มต้นของกล่องสีเหลืองให้อยู่ใต้สี่เหลี่ยมสีน้ำตาลเข้ม (ห่าง 10 พิกเซล)
-    box_x = inner_box_x + (INNER_BOX_WIDTH // 2) - (BOX_WIDTH // 2)
-    box_y = inner_box_y + INNER_BOX_HEIGHT + 10
+    box_x = 125
+    box_y = 210
 
     # ลูปหลัก
     running = True
-    while running:
+    while running: 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -124,4 +124,4 @@ def run_world_view():
     sys.exit()
 
 if __name__ == "__main__":
-    run_world_view()
+    run_thefront()
